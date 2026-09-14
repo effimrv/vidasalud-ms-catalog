@@ -4,11 +4,11 @@ Microservicio de VidaSalud responsable de administrar el catálogo de prestacion
 
 ## Responsabilidades
 
-- Listar las prestaciones disponibles.
-- Crear nuevas prestaciones.
+- Listar prestaciones disponibles.
+- Crear prestaciones.
 - Actualizar prestaciones existentes.
-- Mantener datos como nombre, precio, box y cupos disponibles.
-- Persistir la información en PostgreSQL/Supabase.
+- Mantener nombre, precio, box y cupos disponibles.
+- Persistir información en PostgreSQL/Supabase.
 
 ## Tecnologías
 
@@ -31,22 +31,17 @@ El servicio utiliza el puerto `8082`.
 
 ## Ejecución local
 
-Requisitos: Java 17, Maven y una base de datos PostgreSQL accesible.
+Requisitos: Java 17, Maven y PostgreSQL accesible.
 
 ```bash
 mvn spring-boot:run
-```
-
-Para generar y ejecutar el JAR:
-
-```bash
 mvn clean package -DskipTests
 java -jar target/catalog-1.0.0.jar
 ```
 
 ## Base de datos
 
-La conexión se configura en `src/main/resources/application.yml`. El servicio está preparado para conectarse al pooler de Supabase usando PostgreSQL y `prepareThreshold=0`.
+La conexión se configura en `src/main/resources/application.yml`. El servicio utiliza el pooler de Supabase mediante PostgreSQL y `prepareThreshold=0`.
 
 No se deben publicar contraseñas ni credenciales reales. En producción se deben utilizar variables de entorno o un gestor de secretos.
 
@@ -62,5 +57,3 @@ docker run -d --name catalog -p 8082:8082 catalog
 ```bash
 curl -i http://localhost:8082/api/catalog/services
 ```
-# vidasalud-ms-catalog
-Administración de catálogo de prestaciones, boxes y cupos.

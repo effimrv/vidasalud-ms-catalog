@@ -10,7 +10,7 @@ import java.util.Objects;
 @RequestMapping("/api/info")
 public class InstitutionalInfoController {
 
-    private static final Long ID_UNICO = 1L;
+    private static final @NonNull Long ID_UNICO = 1L;
 
     private final InstitutionalInfoRepository repo;
 

@@ -43,13 +43,13 @@ java -jar target/catalog-1.0.0.jar
 
 La conexión se configura en `src/main/resources/application.yml`. El servicio utiliza el pooler de Supabase mediante PostgreSQL y `prepareThreshold=0`.
 
-No se deben publicar contraseñas ni credenciales reales. En producción se deben utilizar variables de entorno o un gestor de secretos.
+**Contraseña de la base de datos:** no está en el repositorio. Se entrega con la variable de entorno `DB_PASSWORD` (en la EC2, desde el `.env` de `vidasalud-infra`). Para correrlo en local: `DB_PASSWORD='…' mvn spring-boot:run`. También se pueden cambiar `DB_URL` y `DB_USERNAME`.
 
 ## Docker
 
 ```bash
 docker build -t catalog .
-docker run -d --name catalog -p 8082:8082 catalog
+docker run -d --name catalog -p 8082:8082 -e DB_PASSWORD='…' catalog
 ```
 
 ## Verificación rápida

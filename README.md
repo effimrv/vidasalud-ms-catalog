@@ -1,6 +1,8 @@
 # VidaSalud MS Catalog
 
-Microservicio de VidaSalud responsable de administrar el catálogo de prestaciones o servicios clínicos. Utiliza Spring Boot, Spring Data JPA y PostgreSQL.
+Microservicio de VidaSalud responsable de administrar el catálogo de prestaciones o servicios clínicos y la información institucional del centro. Utiliza Spring Boot, Spring Data JPA y PostgreSQL.
+
+Matriz de funcionalidades y documentación del proyecto: [vidasalud-docs](https://github.com/effimrv/vidasalud-docs).
 
 ## Responsabilidades
 
@@ -8,6 +10,7 @@ Microservicio de VidaSalud responsable de administrar el catálogo de prestacion
 - Crear prestaciones.
 - Actualizar prestaciones existentes.
 - Mantener nombre, precio, box y cupos disponibles.
+- Entregar y actualizar la información institucional del centro (descripción, teléfono, correo, horario y dirección) que muestra la página Nosotros.
 - Persistir información en PostgreSQL/Supabase.
 
 ## Tecnologías
@@ -28,16 +31,20 @@ El servicio utiliza el puerto `8082`.
 | GET | `/api/catalog/services` | Lista las prestaciones. |
 | POST | `/api/catalog/services` | Crea una prestación. |
 | PUT | `/api/catalog/services/{id}` | Actualiza una prestación. |
+| GET | `/api/info` | Información institucional del centro (se crea con valores iniciales si no existe). |
+| PUT | `/api/info` | Actualiza la información institucional. |
 
 ## Ejecución local
 
 Requisitos: Java 17, Maven y PostgreSQL accesible.
 
 ```bash
-mvn spring-boot:run
-mvn clean package -DskipTests
+DB_PASSWORD='…' mvn spring-boot:run
+mvn clean package
 java -jar target/catalog-1.0.0.jar
 ```
+
+`mvn clean package` también ejecuta las pruebas del controlador del catálogo.
 
 ## Base de datos
 
